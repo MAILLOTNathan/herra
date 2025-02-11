@@ -8,8 +8,6 @@
 #include <iostream>
 #include "Server.hpp"
 #include "Client.hpp"
-#include "API/Region.hpp"
-#include "API/Weather.hpp"
 #include "Log.hpp"
 
 ETIB::Server *createServerFromArgs(int ac, char **av)
@@ -23,24 +21,6 @@ ETIB::Server *createServerFromArgs(int ac, char **av)
         }
     }
     return new ETIB::Server();
-}
-
-std::shared_ptr<std::vector<ETIB::API::Region>> getRegions(ETIB::Client *regionReunion)
-{
-    std::shared_ptr<std::vector<ETIB::API::Region>> regions = std::make_shared<std::vector<ETIB::API::Region>>();
-    std::shared_ptr<ETIB::JsonValue> json = regionReunion->get("/api/explore/v2.1/catalog/datasets/lieux-remarquables-lareunion-wssoubik/records?limit=100");
-
-    if (!json) {
-        ETIB::Log(ETIB::Log::ERROR, "Failed to get regions, bad API call.");
-        return nullptr;
-    }
-    for (auto &elem : json->getObjectValue().at("results")->getArrayValue()) {
-        ETIB::API::Region region;
-
-        region.deserialize(elem);
-        regions->push_back(region);
-    }
-    return regions;
 }
 
 std::string getFileContent(const std::string &filename)
@@ -63,18 +43,9 @@ int main(int ac, char **av)
     ETIB::Server *server = createServerFromArgs(ac, av);
 
     ETIB::Client *regionReunion = new ETIB::Client("https://data.regionreunion.com");
-    std::shared_ptr<std::vector<ETIB::API::Region>> regionsValues = getRegions(regionReunion);
     ETIB::JsonArray regions = ETIB::JsonArray();
 
     ETIB::Client *weatherClient = new ETIB::Client("https://api.openweathermap.org");
-
-    if (!regionsValues) {
-        ETIB::Log(ETIB::Log::ERROR, "Failed to get regions");
-        return 84;
-    }
-    for (auto &region : *regionsValues) {
-        regions.addValue(region.serialize());
-    }
 
     if (!server) {
         ETIB::Log(ETIB::Log::ERROR, "Failed to create server");
