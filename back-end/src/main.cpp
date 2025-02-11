@@ -42,11 +42,6 @@ int main(int ac, char **av)
     std::string htmlContent = getFileContent("api.html");
     ETIB::Server *server = createServerFromArgs(ac, av);
 
-    ETIB::Client *regionReunion = new ETIB::Client("https://data.regionreunion.com");
-    ETIB::JsonArray regions = ETIB::JsonArray();
-
-    ETIB::Client *weatherClient = new ETIB::Client("https://api.openweathermap.org");
-
     if (!server) {
         ETIB::Log(ETIB::Log::ERROR, "Failed to create server");
         return 84;
@@ -62,37 +57,61 @@ int main(int ac, char **av)
         res.status = 200;
         res.set_content("Hello World!", "text/plain");
     });
+    server->get("/users", [&](const httplib::Request &req, httplib::Response &res) {
+        res.status = 200;
+        res.set_header("Access-Control-Allow-Origin", "*");
+        res.set_header("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+        res.set_header("Access-Control-Allow-Headers", "Content-Type");
+        res.set_content("Full users listing", "text/plain");
+    });
+    server->get("/alerts", [&](const httplib::Request &req, httplib::Response &res) {
+        res.status = 200;
+        res.set_header("Access-Control-Allow-Origin", "*");
+        res.set_header("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+        res.set_header("Access-Control-Allow-Headers", "Content-Type");
+        res.set_content("Full alerts listing", "text/plain");
+    });
     server->get("/places", [&](const httplib::Request &req, httplib::Response &res) {
         res.status = 200;
         res.set_header("Access-Control-Allow-Origin", "*");
         res.set_header("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
         res.set_header("Access-Control-Allow-Headers", "Content-Type");
-        res.set_content(regions.writeArray(), "application/json");
+        res.set_content("Full places listing", "text/plain");
     });
-    server->get("/weathers", [&](const httplib::Request &req, httplib::Response &res) {
-        auto lat = req.get_param_value("lat");
-        auto lon = req.get_param_value("lon");
-
-        if (lat.empty() || lon.empty()) {
-            res.status = 400;
-            res.set_content("{\"error\":\"Missing latitude or longitude\"}", "application/json");
-            ETIB::Log(ETIB::Log::ERROR, "Invalid request, missing latitude or longitude");
-            return;
-        }
-
-        std::shared_ptr<ETIB::JsonValue> json = weatherClient->get("/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&appid=63d2c9841547574de0ad680674b48c61");
-
-        if (!json) {
-            res.status = 500;
-            res.set_content("{\"error\":\"Failed to get weather\"}", "application/json");
-            ETIB::Log(ETIB::Log::ERROR, "Failed to get weather");
-            return;
-        }
+    server->get("/places/safe", [&](const httplib::Request &req, httplib::Response &res) {
         res.status = 200;
         res.set_header("Access-Control-Allow-Origin", "*");
         res.set_header("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
         res.set_header("Access-Control-Allow-Headers", "Content-Type");
-        res.set_content(json->writeObject(), "application/json");
+        res.set_content("Full safe places listing", "text/plain");
+    });
+    server->get("/places/unsafe", [&](const httplib::Request &req, httplib::Response &res) {
+        res.status = 200;
+        res.set_header("Access-Control-Allow-Origin", "*");
+        res.set_header("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+        res.set_header("Access-Control-Allow-Headers", "Content-Type");
+        res.set_content("Full unsafe places listing", "text/plain");
+    });
+    server->get("/services", [&](const httplib::Request &req, httplib::Response &res) {
+        res.status = 200;
+        res.set_header("Access-Control-Allow-Origin", "*");
+        res.set_header("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+        res.set_header("Access-Control-Allow-Headers", "Content-Type");
+        res.set_content("Full services listing", "text/plain");
+    });
+    server->get("/services/medical", [&](const httplib::Request &req, httplib::Response &res) {
+        res.status = 200;
+        res.set_header("Access-Control-Allow-Origin", "*");
+        res.set_header("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+        res.set_header("Access-Control-Allow-Headers", "Content-Type");
+        res.set_content("Full medical services listing", "text/plain");
+    });
+    server->get("/services/courses", [&](const httplib::Request &req, httplib::Response &res) {
+        res.status = 200;
+        res.set_header("Access-Control-Allow-Origin", "*");
+        res.set_header("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+        res.set_header("Access-Control-Allow-Headers", "Content-Type");
+        res.set_content("Full courses services listing", "text/plain");
     });
     server->listen();
     delete server;
