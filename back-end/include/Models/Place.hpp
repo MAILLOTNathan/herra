@@ -3,7 +3,7 @@
 
 #include "etibjson.hpp"
 
-namespace Models {
+namespace Model {
     class Place : public ETIB::JsonSerializable {
         public:
             Place();

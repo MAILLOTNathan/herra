@@ -1,18 +1,18 @@
 #include "Models/Place.hpp"
 
-Models::Place::Place()
+Model::Place::Place()
 {
     this->name = "";
     this->coordinates = std::make_pair(0, 0);
 }
 
-Models::Place::Place(const std::string& name, const std::pair<double, double>& coordinates)
+Model::Place::Place(const std::string& name, const std::pair<double, double>& coordinates)
 {
     this->name = name;
     this->coordinates = coordinates;
 }
 
-std::shared_ptr<ETIB::JsonValue> Models::Place::serialize()
+std::shared_ptr<ETIB::JsonValue> Model::Place::serialize()
 {
     auto json = std::make_shared<ETIB::JsonObject>();
     auto coordinates = std::make_shared<ETIB::JsonObject>();
@@ -25,7 +25,7 @@ std::shared_ptr<ETIB::JsonValue> Models::Place::serialize()
     return json;
 }
 
-void Models::Place::deserialize(const std::shared_ptr<ETIB::JsonValue>& json)
+void Model::Place::deserialize(const std::shared_ptr<ETIB::JsonValue>& json)
 {
     auto coordinates = json->getObjectValue()["coordinates"]->getObjectValue();
 

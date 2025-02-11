@@ -1,20 +1,20 @@
 #include "Models/SafePlace.hpp"
 
-Models::SafePlace::SafePlace() : Place()
+Model::SafePlace::SafePlace() : Place()
 {
     this->address = "";
     this->phone = "";
     this->type = "";
 }
 
-Models::SafePlace::SafePlace(const std::string& name, const std::pair<double, double>& coordinates, const std::string& address, const std::string& phone, const std::string& type) : Place(name, coordinates)
+Model::SafePlace::SafePlace(const std::string& name, const std::pair<double, double>& coordinates, const std::string& address, const std::string& phone, const std::string& type) : Place(name, coordinates)
 {
     this->address = address;
     this->phone = phone;
     this->type = type;
 }
 
-std::shared_ptr<ETIB::JsonValue> Models::SafePlace::serialize()
+std::shared_ptr<ETIB::JsonValue> Model::SafePlace::serialize()
 {
     auto json = std::dynamic_pointer_cast<ETIB::JsonObject>(Place::serialize());
 
@@ -24,7 +24,7 @@ std::shared_ptr<ETIB::JsonValue> Models::SafePlace::serialize()
     return json;
 }
 
-void Models::SafePlace::deserialize(const std::shared_ptr<ETIB::JsonValue>& json)
+void Model::SafePlace::deserialize(const std::shared_ptr<ETIB::JsonValue>& json)
 {
     Place::deserialize(json);
 

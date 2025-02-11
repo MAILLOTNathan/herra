@@ -3,7 +3,7 @@
 
 #include "Place.hpp"
 
-namespace Models {
+namespace Model {
     class SafePlace : public Place {
         public:
             SafePlace();
