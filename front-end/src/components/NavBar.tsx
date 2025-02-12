@@ -3,11 +3,8 @@ import { Avatar, Dropdown, Navbar } from "flowbite-react";
 export default function NavBar() {
   return (
     <Navbar fluid rounded className="z-10">
-      <Navbar.Brand href="https://flowbite-react.com">
+      <Navbar.Brand href="/">
         <img src="/favicon.ico" className="mr-3 h-6 sm:h-9" alt="Flowbite React Logo" />
-        <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
-            Flowbite React
-        </span>
       </Navbar.Brand>
       <div className="flex md:order-2">
         <Dropdown
@@ -39,20 +36,17 @@ export default function NavBar() {
         <Navbar.Toggle />
       </div>
       <Navbar.Collapse>
-        <Navbar.Link href="/" active>
-          Home
+        <Navbar.Link href="/fil" active>
+          Fil
         </Navbar.Link>
-        <Navbar.Link href="#">
-            About
+        <Navbar.Link href="/trajets">
+            Trajets Fav
         </Navbar.Link>
-        <Navbar.Link href="#">
+        <Navbar.Link href="/services">
             Services
         </Navbar.Link>
-        <Navbar.Link href="#">
-            Pricing
-        </Navbar.Link>
-        <Navbar.Link href="#">
-            Contact
+        <Navbar.Link href="/abonnements">
+            Abonnements
         </Navbar.Link>
       </Navbar.Collapse>
     </Navbar>
