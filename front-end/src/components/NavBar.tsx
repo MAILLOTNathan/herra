@@ -4,7 +4,7 @@ export default function NavBar() {
   return (
     <Navbar fluid rounded className="z-10">
       <Navbar.Brand href="/">
-        <img src="/favicon.ico" className="mr-3 h-6 sm:h-9" alt="Flowbite React Logo" />
+        <img src="assets/h_logo.png" className="mr-3 h-6 sm:h-9" alt="Hera Logo" />
       </Navbar.Brand>
       <div className="flex md:order-2">
         <Dropdown
@@ -36,16 +36,16 @@ export default function NavBar() {
         <Navbar.Toggle />
       </div>
       <Navbar.Collapse>
-        <Navbar.Link href="/fil" active>
+        <Navbar.Link href="/fil" active className="">
           Fil
         </Navbar.Link>
-        <Navbar.Link href="/trajets">
+        <Navbar.Link href="/trajets" className="">
             Trajets Fav
         </Navbar.Link>
-        <Navbar.Link href="/services">
+        <Navbar.Link href="/services" className="">
             Services
         </Navbar.Link>
-        <Navbar.Link href="/abonnements">
+        <Navbar.Link href="/abonnements" className="">
             Abonnements
         </Navbar.Link>
       </Navbar.Collapse>
