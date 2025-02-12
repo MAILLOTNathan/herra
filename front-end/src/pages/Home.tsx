@@ -6,6 +6,7 @@ import NavBar from "../components/NavBar";
 import Map from "../components/Map";
 import MyFooter from "../components/MyFooter";
 import SearchBar from "../components/SearchBar";
+import Signaler from "../components/Signaler";
 
 export default function Home() {
     return (
@@ -18,6 +19,7 @@ export default function Home() {
                 </div>
                 <MyFooter />
             </div>
+            <Signaler />
         </Flowbite>
     );
 }
