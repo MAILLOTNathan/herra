@@ -99,7 +99,7 @@ const  Recents: React.FC<{ routes: any[] }> = ({ routes }) => {
                     .sort((a, b) => b.lastUse - a.lastUse)
                     .slice(0, 2)
                     .map((route, index) => (
-                        <RouteCard key={index} depart={route.depart} destination={route.destination} distance={route.distance} lastUse={route.lastUse} favourite={route.favourite} />
+                        <RouteCard key={index} depart={route.depart} destination={route.destination} distance={route.distance} lastUse={route.lastUse} favourite={route.favorite} />
                     ))}
             </span>
         </div>
@@ -116,7 +116,7 @@ const Favorites: React.FC<{ routes: any[] }> = ({ routes }) => {
                 {routes
                     .filter(route => route.favorite)
                     .map((route, index) => (
-                        <RouteCard key={index} depart={route.depart} destination={route.destination} distance={route.distance} lastUse={route.lastUse} favourite={route.favourite}/>
+                        <RouteCard key={index} depart={route.depart} destination={route.destination} distance={route.distance} lastUse={route.lastUse} favourite={route.favorite}/>
                     ))}
             </span>
         </div>

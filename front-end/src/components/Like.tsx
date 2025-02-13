@@ -1,15 +1,13 @@
 import React from "react"
 
-import { FaHeart, FaRegHeart } from "react-icons/fa";
-
 const Like: React.FC<{ state: boolean }> = ({state}) => {
     return (
         <div className="flex flex-row items-center cursor-pointer">
             {
                 state === false ?
-                <FaRegHeart className="text-accent text-2xl" />
+                <img src="assets/heart_reg.svg" alt="heart" className="w-8 h-8" />
                 :
-                <FaHeart className="text-accent text-2xl" />
+                <img src="assets/heart.svg" alt="heart" className="w-8 h-8" />
             }
         </div>
     );
