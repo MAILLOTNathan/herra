@@ -1,5 +1,7 @@
 import { Textarea, Avatar, Button } from 'flowbite-react'
 
+import { LatLngTuple } from 'leaflet';
+
 import React, { useState } from 'react';
 
 import { FaPaperPlane } from 'react-icons/fa';
@@ -11,7 +13,7 @@ import MapButton from './MapButton';
 
 const Poster: React.FC<{ callBack: (post: Post) => void }> = ({ callBack }) => {
     const [comment, setComment] = useState<string>('');
-    const [gpsPoint, setGpsPoint] = useState<number[]>([]);
+    const [gpsPoint, setGpsPoint] = useState<LatLngTuple>();
 
     function post() {
         if (!comment) {
@@ -34,7 +36,7 @@ const Poster: React.FC<{ callBack: (post: Post) => void }> = ({ callBack }) => {
         };
         callBack(post);
         setComment('');
-        setGpsPoint([]);
+        setGpsPoint(undefined);
     }
 
     function handleCommentChange(event: React.ChangeEvent<HTMLTextAreaElement>) {
