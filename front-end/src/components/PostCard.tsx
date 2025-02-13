@@ -1,12 +1,24 @@
 import React, { useState } from "react";
 
 import { Avatar, Card } from "flowbite-react";
-import { MapContainer, TileLayer, Marker, SVGOverlay } from "react-leaflet";
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 
 import Post from "../interface/Post";
 import Like from "./Like";
 import Share from "./Share";
-import Locate from "./Locate";
+
+import "leaflet/dist/leaflet.css";
+
+import L from "leaflet";
+import markerIcon from "leaflet/dist/images/marker-icon.png";
+import markerShadow from "leaflet/dist/images/marker-shadow.png";
+
+const defaultIcon = L.icon({
+    iconUrl: markerIcon,
+    shadowUrl: markerShadow,
+});
+
+L.Marker.prototype.options.icon = defaultIcon;
 
 const PostCard: React.FC<{ post: Post }> = ({ post }) => {
     const [liked, setLiked] = useState(false);
@@ -30,13 +42,14 @@ const PostCard: React.FC<{ post: Post }> = ({ post }) => {
             </p>
             {
                 post.gpsPoint &&
-                <MapContainer className="rounded-xl mx-auto" bounds={[post.gpsPoint, [post.gpsPoint[0] + 0.01, post.gpsPoint[1] + 0.01]]} style={{ height: "25vh", width: "60%", zIndex: 0 }}>
+                <MapContainer className="rounded-xl mx-auto" bounds={[post.gpsPoint, [post.gpsPoint[0] + 0.1, post.gpsPoint[1] -0.01]]} style={{ height: "25vh", width: "60%", zIndex: 0 }}>
                     <TileLayer
                         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                     />
-                    <SVGOverlay attributes={{ stroke: "violet" }} bounds={[[post.gpsPoint[0], post.gpsPoint[1]], [post.gpsPoint[0] + 0.005, post.gpsPoint[1] + 0.005]]}>
-                        <circle cx="50%" cy="50%" r="10" fill="magenta" />
-                    </SVGOverlay>
+                    <Marker position={[post.gpsPoint[0], post.gpsPoint[1]]}>
+                        <Popup>
+                        </Popup>
+                    </Marker>
                 </MapContainer>
             }
             <div className="flex flex-row items-center justify-around">
