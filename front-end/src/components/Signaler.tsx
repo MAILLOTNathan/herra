@@ -13,17 +13,29 @@ export default function Signaler() {
             <FaExclamationTriangle />
         </div>
         } placement="top" arrowIcon={false} size="xl" color="purple">
-        <Dropdown.Item>
-            Dashboard
+        <Dropdown.Item className="flex flex-row items-center justify-between">
+            <img src="assets/danger_zone.svg" alt="danger zone" className="w-8 h-8" />
+            <span className="text-xs font-bold">
+              Zone de danger
+            </span>
         </Dropdown.Item>
-        <Dropdown.Item>
-            Settings
+        <Dropdown.Item className="flex flex-row items-center justify-between">
+            <img src="assets/message.svg" alt="danger zone" className="w-8 h-8" />
+            <span className="text-xs font-bold">
+              Message
+            </span>
         </Dropdown.Item>
-        <Dropdown.Item>
-            Earnings
+        <Dropdown.Item className="flex flex-row items-center justify-between">
+            <img src="assets/signaler.svg" alt="danger zone" className="w-8 h-8" />
+            <span className="text-xs font-bold">
+              Signaler
+            </span>
         </Dropdown.Item>
-        <Dropdown.Item>
-            Sign out
+        <Dropdown.Item className="flex flex-row items-center justify-between">
+            <img src="assets/suspicious_person.svg" alt="danger zone" className="w-8 h-8" />
+            <span className="text-xs font-bold">
+              Personne suspecte
+            </span>
         </Dropdown.Item>
       </Dropdown>
     </div>

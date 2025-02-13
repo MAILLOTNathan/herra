@@ -7,6 +7,7 @@ import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import markerIcon from "leaflet/dist/images/marker-icon.png";
 import markerShadow from "leaflet/dist/images/marker-shadow.png";
+import { Spinner } from "flowbite-react";
 
 export default function Map() {
     const [currentBounds, setCurrentBounds] = useState<[[number, number], [number, number]] | null>(null);
@@ -36,7 +37,9 @@ export default function Map() {
                     </Marker>
                 </MapContainer>
             ) : (
-                <p>Loading...</p>
+                <div className="flex justify-center items-center h-[85vh]">
+                    <Spinner />
+                </div>
             )}
         </div>
     );
