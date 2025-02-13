@@ -2,6 +2,7 @@ import { Routes, Route } from 'react-router-dom';
 
 import Home from "./pages/Home";
 import Feed from "./pages/Feed";
+import SignIn from "./pages/SignIn";
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/fil" element={<Feed />} />
+          <Route path="connexion" element={<SignIn />} />
         </Routes>
       </div>
     </main>

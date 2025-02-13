@@ -42,9 +42,6 @@ const NavBar: React.FC<({ currentRoute: string })> = ({ currentRoute }) =>{
         <Navbar.Link href="/trajets" active={currentRoute === "trajets"} className="">
             Trajets Fav
         </Navbar.Link>
-        <Navbar.Link href="/services" active={currentRoute === "services"} className="">
-            Services
-        </Navbar.Link>
         <Navbar.Link href="/abonnements" active={currentRoute === "abonnements"} className="">
             Abonnements
         </Navbar.Link>
