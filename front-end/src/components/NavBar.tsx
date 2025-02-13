@@ -1,8 +1,8 @@
 import { Avatar, Dropdown, Navbar } from "flowbite-react";
 
-export default function NavBar() {
+const NavBar: React.FC<({ currentRoute: string })> = ({ currentRoute }) =>{
   return (
-    <Navbar fluid rounded className="z-10">
+    <Navbar fluid rounded className="z-10 bg-white">
       <Navbar.Brand href="/">
         <img src="assets/h_logo.png" className="mr-3 h-6 sm:h-9" alt="Hera Logo" />
       </Navbar.Brand>
@@ -36,19 +36,21 @@ export default function NavBar() {
         <Navbar.Toggle />
       </div>
       <Navbar.Collapse>
-        <Navbar.Link href="/fil" active className="">
+        <Navbar.Link href="/fil" active={currentRoute === "fil"} className="">
           Fil
         </Navbar.Link>
-        <Navbar.Link href="/trajets" className="">
+        <Navbar.Link href="/trajets" active={currentRoute === "trajets"} className="">
             Trajets Fav
         </Navbar.Link>
-        <Navbar.Link href="/services" className="">
+        <Navbar.Link href="/services" active={currentRoute === "services"} className="">
             Services
         </Navbar.Link>
-        <Navbar.Link href="/abonnements" className="">
+        <Navbar.Link href="/abonnements" active={currentRoute === "abonnements"} className="">
             Abonnements
         </Navbar.Link>
       </Navbar.Collapse>
     </Navbar>
   );
 }
+
+export default NavBar;

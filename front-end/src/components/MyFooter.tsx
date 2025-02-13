@@ -1,9 +1,9 @@
 import { Footer } from "flowbite-react";
 import { BsDribbble, BsFacebook, BsGithub, BsInstagram, BsTwitter } from "react-icons/bs";
 
-export default function MyFooter() {
+const MyFooter: React.FC<({ styleClass: string })> = ({ styleClass }) => {
   return (
-    <Footer container className="">
+    <Footer container className={styleClass}>
       <div className="w-full">
         <div className="grid w-full justify-between sm:flex sm:justify-between md:flex md:grid-cols-1">
           <div>
@@ -66,3 +66,5 @@ export default function MyFooter() {
     </Footer>
   );
 }
+
+export default MyFooter;

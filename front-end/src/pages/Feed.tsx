@@ -7,19 +7,18 @@ import Map from "../components/Map";
 import MyFooter from "../components/MyFooter";
 import SearchBar from "../components/SearchBar";
 import Signaler from "../components/Signaler";
+import Scroller from "../components/Scroller";
+import Poster from "../components/Poster";
+import BackToHead from "../components/BackToHead";
 
-export default function Home() {
+export default function Feed() {
     return (
         <Flowbite theme={{ theme: herraTheme }}>
-            <div>
-                <NavBar currentRoute="/" />
-                <div className="mx-auto w-screen">
-                    <SearchBar />
-                    <Map />
-                </div>
-                <MyFooter styleClass=""/>
-            </div>
-            <Signaler />
+            <NavBar currentRoute="fil" />
+                <Poster />
+                <Scroller />
+            <MyFooter styleClass=""/>
+            <BackToHead />
         </Flowbite>
     );
 }
